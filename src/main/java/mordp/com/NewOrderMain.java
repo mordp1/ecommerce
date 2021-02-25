@@ -14,7 +14,7 @@ public class NewOrderMain {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         var producer = new KafkaProducer<String, String>(properties());
-        var value = "123,436,6821";
+        var value = "422,555,99999";
         var record = new ProducerRecord<>("ECOMMERCE_NEW_ORDER",value, value );
         var email = "Obrigado pela sua Order, Estamos processando";
         var emailRecord = new ProducerRecord<>("ECOMMERCE_NEW_EMAIL", email, email);

@@ -19,11 +19,11 @@ public class LogService {
             if (!records.isEmpty()) {
                 System.out.println("Encontrei " + records.count() +  " registros");
                 for (var record : records) {
-                    System.out.println("LOG:" + record.topic());
-                    System.out.println(record.key());
-                    System.out.println(record.value());
-                    System.out.println(record.partition());
-                    System.out.println(record.offset());
+                    System.out.println("LOG: " + record.topic());
+                    System.out.println("Key: " + record.key());
+                    System.out.println("Value: "record.value());
+                    System.out.println("Partition: " + record.partition());
+                    System.out.println("Offset: " + record.offset());
                 }
             }
 
