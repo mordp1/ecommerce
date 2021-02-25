@@ -1,5 +1,6 @@
 package mordp.com;
 
+import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -15,13 +16,20 @@ public class NewOrderMain {
         var producer = new KafkaProducer<String, String>(properties());
         var value = "123,436,6821";
         var record = new ProducerRecord<>("ECOMMERCE_NEW_ORDER",value, value );
-        producer.send(record,(data, ex) -> {
-            if (ex != null){
+        var email = "Obrigado pela sua Order, Estamos processando";
+        var emailRecord = new ProducerRecord<>("ECOMMERCE_NEW_EMAIL", email, email);
+        producer.send(record, getCallback()).get();
+        producer.send(emailRecord, getCallback()).get();
+    }
+
+    private static Callback getCallback() {
+        return (data, ex) -> {
+            if (ex != null) {
                 ex.printStackTrace();
                 return;
             }
             System.out.println("Sucesso enviando " + data.topic() + ":::Partition " + data.partition() + "/ Offset " + data.offset() + "/ Timestamp " + data.timestamp());
-        }).get();
+        };
     }
 
     private static Properties properties() {
