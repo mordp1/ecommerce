@@ -13,7 +13,8 @@ public class EmailService {
 
     public static void main(String[] args) {
         var emailService = new EmailService();
-        var service = new KafkaService("ECOMMERCE_NEW_EMAIL",
+        var service = new KafkaService(EmailService.class.getSimpleName(),
+                "ECOMMERCE_NEW_EMAIL",
                 emailService::parse);
         service.run();
     }
