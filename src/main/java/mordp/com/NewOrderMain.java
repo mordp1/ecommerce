@@ -8,16 +8,18 @@ import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.net.InetAddress;
 import java.util.Properties;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 public class NewOrderMain {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         var producer = new KafkaProducer<String, String>(properties());
-        var value = "422,555,99999";
-        var record = new ProducerRecord<>("ECOMMERCE_NEW_ORDER",value, value );
+        var key = UUID.randomUUID().toString();
+        var value = key + ",555,33333";
+        var record = new ProducerRecord<>("ECOMMERCE_NEW_ORDER",key, value );
         var email = "Obrigado pela sua Order, Estamos processando";
-        var emailRecord = new ProducerRecord<>("ECOMMERCE_NEW_EMAIL", email, email);
+        var emailRecord = new ProducerRecord<>("ECOMMERCE_NEW_EMAIL", key, email);
         producer.send(record, getCallback()).get();
         producer.send(emailRecord, getCallback()).get();
     }
