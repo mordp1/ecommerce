@@ -14,9 +14,9 @@ class KafkaDispatcher {
     private final KafkaProducer<String, String> producer;
 
     KafkaDispatcher(){
-       this.producer = new KafkaProducer<>(properties())
-
+       this.producer = new KafkaProducer<>(properties());
     }
+
     private static Properties properties() {
         var properties = new Properties();
         properties.setProperty (ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "129.213.117.48:9092");
@@ -26,16 +26,15 @@ class KafkaDispatcher {
         return properties;
     }
 
-    void send(String ecommerce_new_order, String key, String value) throws ExecutionException, InterruptedException {
-        var record = new ProducerRecord<>(, key, value);
-        Callback getCallback()
-            return (data, ex) -> {
+    void send(String topic, String key, String value) throws ExecutionException, InterruptedException {
+        var record = new ProducerRecord<>(topic, key, value);
+        Callback callback = (data, ex) -> {
                 if (ex != null) {
                     ex.printStackTrace();
                     return;
                 }
                 System.out.println("Sucesso enviando " + data.topic() + ":::Partition " + data.partition() + "/ Offset " + data.offset() + "/ Timestamp " + data.timestamp());
             };
-        producer.send(record, getCallback).get();
+        producer.send(record, callback).get();
     }
 }
