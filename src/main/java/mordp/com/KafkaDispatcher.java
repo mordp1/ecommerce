@@ -41,7 +41,7 @@ class KafkaDispatcher implements Closeable {
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         producer.close();
     }
 }
