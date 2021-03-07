@@ -1,6 +1,7 @@
 package mordp.com;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +32,16 @@ public class FraudDetectorService {
             // ignore
             e.printStackTrace();
         }
-        System.out.println("Order processada");
-    }
+        var order = record.value();
+        if (isFraud(order)) {
+        // pretending that the fraud happens when the amount is >= 4500
+        System.out.println("Order is Fraud!!!");
+    } else {
+            System.out.println("Approved: " + order);
+        }
 
 }
+
+    private boolean isFraud(Order order) {
+        return order.getAmount().compareTo(new BigDecimal("4500")) >= 0;
+    }

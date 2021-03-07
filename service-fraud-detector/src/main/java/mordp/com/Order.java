@@ -12,4 +12,8 @@ public class Order {
         this.orderID = orderID;
         this.amount = amount;
     }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
 }
