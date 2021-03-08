@@ -16,4 +16,17 @@ public class Order {
     public BigDecimal getAmount() {
         return amount;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "userID='" + userID + '\'' +
+                ", orderID='" + orderID + '\'' +
+                ", amount=" + amount +
+                '}';
+    }
+
+    public String getUserID() {
+        return userID;
+    }
 }
