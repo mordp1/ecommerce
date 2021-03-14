@@ -10,7 +10,7 @@ import java.util.concurrent.ExecutionException;
 
 public class ReadingReportService {
 
-    private static final Path SOURCE = new File("src/main/resources/reports.txt").toPath();
+    private static final Path SOURCE = new File("src/main/resources/report.txt").toPath();
 
     public static void main(String[] args) {
         var reportService = new ReadingReportService();
