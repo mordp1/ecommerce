@@ -17,6 +17,7 @@
         <module>service-users</module>
         <module>service-http</module>
         <module>service-http-ecommerce</module>
+        <module>service-reding-report</module>
     </modules>
 
     <properties>
