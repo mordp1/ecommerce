@@ -5,11 +5,11 @@ import java.math.BigDecimal;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-public class FraudDetectorService {
+public class ReadingReportService {
 
     public static void main(String[] args) {
-        var fraudService = new FraudDetectorService();
-        try (var service = new KafkaService<>(FraudDetectorService.class.getSimpleName(),
+        var fraudService = new ReadingReportService();
+        try (var service = new KafkaService<>(ReadingReportService.class.getSimpleName(),
                 "ECOMMERCE_NEW_ORDER",
                 fraudService::parse,
                 Order.class,
