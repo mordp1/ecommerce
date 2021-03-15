@@ -10,7 +10,7 @@ public class NewOrderMain {
        try(var orderDispatcher = new KafkaDispatcher<Order>()) {
            var email = Math.random() + "@email.com";
         try(var emailDispatcher = new KafkaDispatcher<String>()) {
-                for (var i = 0; i < 10; i++) {
+                for (var i = 0; i < 100; i++) {
 
                     var orderId = UUID.randomUUID().toString();
                     var amount = new BigDecimal(Math.random() * 5000 + 1);
